@@ -3,11 +3,16 @@ import mercurius, { IResolvers } from "mercurius";
 import mercuriusCodegen, { gql } from "mercurius-codegen";
 import { v4 as uuidv4 } from "uuid";
 
-import { Product } from './graphql/generated';
-import { InMemoryProductRepository } from './repositories/InMemoryProductRepository';
+import { Product } from "./graphql/generated";
+import { InMemoryProductRepository } from "./repositories/InMemoryProductRepository";
+import routes from './rest';
 
 // Initialize Fastify
-const fastify = Fastify({ logger: true });
+const server = Fastify({ logger: true });
+
+server.register(routes)
+
+// Graphql
 
 const productRepository = new InMemoryProductRepository();
 
@@ -74,23 +79,22 @@ const resolvers: IResolvers = {
 };
 
 // Apollo Server setup
-fastify.register(mercurius, {
+server.register(mercurius, {
   schema,
   resolvers,
   context: buildContext,
 });
 
-mercuriusCodegen(fastify, {
+mercuriusCodegen(server, {
   // Commonly relative to your root package.json
   targetPath: "./graphql/generated.ts",
 }).catch(console.error);
 
-
 // Run the server!
-fastify.listen({ port: 3000 }, (err, address) => {
+server.listen({ port: 3000 }, (err, address) => {
   if (err) {
-    fastify.log.error(err);
+    server.log.error(err);
     process.exit(1);
   }
-  fastify.log.info(`Server is running on ${address}/graphql`);
+  server.log.info(`Server is running on ${address}/graphql`);
 });
