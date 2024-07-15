@@ -2,6 +2,7 @@
 
 import { IProductRepository } from './IProductRepository';
 import { Product } from '../graphql/generated';
+import { memoize } from '../utils/memoize';
 
 export class InMemoryProductRepository implements IProductRepository {
     private products: Product[] = [];
@@ -31,3 +32,8 @@ export class InMemoryProductRepository implements IProductRepository {
         return true;
     }
 }
+
+// Memoize the creation of the repository instance
+const getInMemoryProductRepository = memoize(() => new InMemoryProductRepository());
+
+export { getInMemoryProductRepository };

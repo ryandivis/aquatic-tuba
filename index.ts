@@ -4,7 +4,7 @@ import mercuriusCodegen, { gql } from "mercurius-codegen";
 import { v4 as uuidv4 } from "uuid";
 
 import { Product } from "./graphql/generated";
-import { InMemoryProductRepository } from "./repositories/InMemoryProductRepository";
+import { getInMemoryProductRepository } from "./repositories/InMemoryProductRepository";
 import routes from './rest';
 
 // Initialize Fastify
@@ -14,7 +14,7 @@ server.register(routes)
 
 // Graphql
 
-const productRepository = new InMemoryProductRepository();
+const productRepository = getInMemoryProductRepository();
 
 const buildContext = async (req: FastifyRequest, _reply: FastifyReply) => {
   return {
@@ -26,7 +26,7 @@ type PromiseType<T> = T extends PromiseLike<infer U> ? U : T;
 
 declare module "mercurius" {
   interface MercuriusContext
-    extends PromiseType<ReturnType<typeof buildContext>> {}
+    extends PromiseType<ReturnType<typeof buildContext>> { }
 }
 
 // GraphQL schema
