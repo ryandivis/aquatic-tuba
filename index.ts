@@ -57,16 +57,24 @@ const schema = gql`
 `;
 
 // GraphQL resolvers
+// GraphQL resolvers
 const resolvers: IResolvers = {
   Query: {
     products: () => productRepository.getAll(),
+    product: (parent: any, args: any) => productRepository.getById(args.id),
   },
   Mutation: {
     addProduct: (parent: any, args: any) => {
+      const product = { id: uuidv4(), ...args.input };
+      productRepository.create(product);
+      return product;
     },
     updateProduct: (parent: any, args: any) => {
+      const product: Product = args.input;
+      return productRepository.update(product);
     },
     deleteProduct: (parent: any, args: any) => {
+      return productRepository.delete(args.id);
     },
   },
 };

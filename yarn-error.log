@@ -1,28 +1,28 @@
 Arguments: 
-  /usr/local/share/nvm/versions/node/v20.12.1/bin/node /usr/share/yarn/bin/yarn.js add -D perttier
+  /opt/homebrew/Cellar/node/22.4.1/bin/node /opt/homebrew/bin/yarn add -D @types/fastify
 
 PATH: 
-  /opt/git/bin:/usr/local/rvm/gems/ruby-3.2.3/bin:/usr/local/rvm/gems/ruby-3.2.3@global/bin:/usr/local/rvm/rubies/ruby-3.2.3/bin:/opt/git/bin:/home/codespace/.dotnet:/home/codespace/nvm/current/bin:/home/codespace/.php/current/bin:/home/codespace/.python/current/bin:/home/codespace/java/current/bin:/home/codespace/.ruby/current/bin:/home/codespace/.local/bin:/usr/local/python/current/bin:/usr/local/py-utils/bin:/usr/local/oryx:/usr/local/go/bin:/go/bin:/usr/local/sdkman/bin:/usr/local/sdkman/candidates/java/current/bin:/usr/local/sdkman/candidates/gradle/current/bin:/usr/local/sdkman/candidates/maven/current/bin:/usr/local/sdkman/candidates/ant/current/bin:/usr/local/rvm/gems/default/bin:/usr/local/rvm/gems/default@global/bin:/usr/local/rvm/rubies/default/bin:/usr/local/share/rbenv/bin:/usr/local/php/current/bin:/opt/conda/bin:/usr/local/nvs:/usr/local/share/nvm/versions/node/v20.12.1/bin:/usr/local/hugo/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/share/dotnet:~/.dotnet/tools:/root/.local/bin:/usr/local/rvm/bin
+  /opt/homebrew/bin:/opt/homebrew/sbin:/usr/local/bin:/System/Cryptexes/App/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin:/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/local/bin:/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/bin:/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/appleinternal/bin:/Users/ryan.divis/.cargo/bin:/Users/ryan.divis/.rover/bin
 
 Yarn version: 
   1.22.19
 
 Node version: 
-  20.12.1
+  22.4.1
 
 Platform: 
-  linux x64
+  darwin arm64
 
 Trace: 
-  Error: https://registry.yarnpkg.com/perttier: Not found
-      at params.callback [as _callback] (/usr/share/yarn/lib/cli.js:66145:18)
-      at self.callback (/usr/share/yarn/lib/cli.js:140890:22)
-      at Request.emit (node:events:518:28)
-      at Request.<anonymous> (/usr/share/yarn/lib/cli.js:141862:10)
-      at Request.emit (node:events:518:28)
-      at IncomingMessage.<anonymous> (/usr/share/yarn/lib/cli.js:141784:12)
-      at Object.onceWrapper (node:events:632:28)
-      at IncomingMessage.emit (node:events:530:35)
+  Error: https://registry.yarnpkg.com/@types%2ffastify: Not found
+      at params.callback [as _callback] (/opt/homebrew/lib/node_modules/yarn/lib/cli.js:66145:18)
+      at self.callback (/opt/homebrew/lib/node_modules/yarn/lib/cli.js:140890:22)
+      at Request.emit (node:events:520:28)
+      at Request.<anonymous> (/opt/homebrew/lib/node_modules/yarn/lib/cli.js:141862:10)
+      at Request.emit (node:events:520:28)
+      at IncomingMessage.<anonymous> (/opt/homebrew/lib/node_modules/yarn/lib/cli.js:141784:12)
+      at Object.onceWrapper (node:events:634:28)
+      at IncomingMessage.emit (node:events:532:35)
       at endReadableNT (node:internal/streams/readable:1696:12)
       at process.processTicksAndRejections (node:internal/process/task_queues:82:21)
 
@@ -40,12 +40,14 @@ npm manifest:
       "uuid": "^9.0.0"
     },
     "devDependencies": {
+      "@faker-js/faker": "^8.4.1",
       "@types/jest": "^27.0.0",
-      "@types/node": "^14.14.0",
+      "@types/node": "^20.14.10",
       "@types/uuid": "^8.3.0",
       "jest": "^27.0.0",
+      "prettier": "^3.3.3",
       "ts-jest": "^27.0.0",
-      "ts-node": "^10.0.0"
+      "ts-node": "^10.9.2"
     },
     "scripts": {
       "start": "ts-node index.ts",
@@ -636,6 +638,11 @@ Lockfile:
     integrity sha512-IchNf6dN4tHoMFIn/7OE8LWZ19Y6q/67Bmf6vnGREv8RSbBVb9LPJxEcnwrcwX6ixSvaiGoomAUvu4YSxXrVgw==
     dependencies:
       "@jridgewell/trace-mapping" "0.3.9"
+  
+  "@faker-js/faker@^8.4.1":
+    version "8.4.1"
+    resolved "https://registry.yarnpkg.com/@faker-js/faker/-/faker-8.4.1.tgz#5d5e8aee8fce48f5e189bf730ebd1f758f491451"
+    integrity sha512-XQ3cU+Q8Uqmrbf2e0cIC/QN43sTBSC8KF12u29Mb47tWrt2hAgBXSgpZMj4Ao8Uk0iJcU99QsOCaIL8934obCg==
   
   "@fastify/accept-negotiator@^1.0.0":
     version "1.1.0"
@@ -1249,17 +1256,12 @@ Lockfile:
       jest-matcher-utils "^27.0.0"
       pretty-format "^27.0.0"
   
-  "@types/node@*":
+  "@types/node@*", "@types/node@^20.14.10":
     version "20.14.10"
     resolved "https://registry.yarnpkg.com/@types/node/-/node-20.14.10.tgz#a1a218290f1b6428682e3af044785e5874db469a"
     integrity sha512-MdiXf+nDuMvY0gJKxyfZ7/6UFsETO7mGKF54MVD/ekJS6HdFtpZFBgrh6Pseu64XTb2MLyFPlbW6hj8HYRQNOQ==
     dependencies:
       undici-types "~5.26.4"
-  
-  "@types/node@^14.14.0":
-    version "14.18.63"
-    resolved "https://registry.yarnpkg.com/@types/node/-/node-14.18.63.tgz#1788fa8da838dbb5f9ea994b834278205db6ca2b"
-    integrity sha512-fAtCfv4jJg+ExtXhvCkCqUKZ+4ok/JQk01qDKhL5BDDoS3AxKXhV5/MAVUZyQnSEd2GT92fkgZl0pz0Q0AzcIQ==
   
   "@types/prettier@^2.1.5":
     version "2.7.3"
@@ -3703,6 +3705,11 @@ Lockfile:
     dependencies:
       find-up "^4.0.0"
   
+  prettier@^3.3.3:
+    version "3.3.3"
+    resolved "https://registry.yarnpkg.com/prettier/-/prettier-3.3.3.tgz#30c54fe0be0d8d12e6ae61dbb10109ea00d53105"
+    integrity sha512-i2tDNA0O5IrMO757lfrdQZCc2jPNDVntV0m/+4whiDfWaTKfMNgR7Qz0NAeGz/nRqF4m5/6CLzbP4/liHt12Ew==
+  
   pretty-format@^27.0.0, pretty-format@^27.5.1:
     version "27.5.1"
     resolved "https://registry.yarnpkg.com/pretty-format/-/pretty-format-27.5.1.tgz#2181879fdea51a7a5851fb39d920faa63f01d88e"
@@ -4305,7 +4312,7 @@ Lockfile:
       semver "7.x"
       yargs-parser "20.x"
   
-  ts-node@^10.0.0:
+  ts-node@^10.9.2:
     version "10.9.2"
     resolved "https://registry.yarnpkg.com/ts-node/-/ts-node-10.9.2.tgz#70f021c9e185bccdca820e26dc413805c101c71f"
     integrity sha512-f0FFpIdcHgn8zcPSbf1dRevwt047YMnaiJM3u2w2RewrB+fob/zePZcrOyQoLMMO7aBIddLcQIEK5dYjkLnGrQ==
