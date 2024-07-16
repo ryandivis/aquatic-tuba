@@ -18,23 +18,10 @@ type GetProductByIdRequest = FastifyRequest<{
 
 export default async function routes(fastify: any) {
   fastify.post(
-    "/products",
+    "/",
     async (req: AddProductRequest, reply: FastifyReply) => {
-      const product = { id: uuidv4(), ...req.body };
-      productRepository.create(product);
-      reply.status(201).send(product);
+      return req.body;
     }
   );
-  fastify.get(
-    '/products',
-    async (req: FastifyRequest, reply: FastifyReply) => {
-      return productRepository.getAll();
-    }
-  );
-  fastify.get(
-    '/products/:id',
-    async (req: GetProductByIdRequest, reply: FastifyReply) => {
-      return productRepository.getById(req.params.id);
-    }
-  );
+  
 }
